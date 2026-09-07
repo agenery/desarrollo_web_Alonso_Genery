@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Listado de Avistamientos - Unión de Ornitólogos de Chile</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <header>
+    <h1>Unión de Ornitólogos de Chile</h1>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="main.html">Registro de Voluntario</a>
+      <a href="registro-avistamiento.html">Registrar Avistamiento</a>
+      <a href="listado-avistamiento.html">Listado de Avistamientos</a>
+      <a href="indicadores.html">Indicadores</a>
+    </nav>
+  </header>
+
+  <main class="main-container listado-container">
+    <h2>Listado de Avistamientos</h2>
+
+    <div class="controles-listado">
+      <label for="filtro-tipo">Filtrar por tipo de ave</label>
+      <select id="filtro-tipo">
+        <option value="">Todas</option>
+        <option value="Rapaz">Rapaz</option>
+        <option value="Acuática">Acuática</option>
+        <option value="Paseriforme">Paseriforme</option>
+        <option value="Zancuda">Zancuda</option>
+        <option value="Marina">Marina</option>
+        <option value="Nocturna">Nocturna</option>
+        <option value="Otra">Otra</option>
+      </select>
+
+      <div class="botones-orden">
+        <button type="button" id="orden-fecha">Ordenar por fecha ↓</button>
+        <button type="button" id="orden-lugar">Ordenar por lugar</button>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Imagen</th>
+          <th>Tipo</th>
+          <th>Nombre del ave</th>
+          <th>Lugar</th>
+          <th>Fecha</th>
+          <th>Hora</th>
+        </tr>
+      </thead>
+      <tbody id="tabla-avistamientos">
+      </tbody>
+    </table>
+
+    <p id="sin-resultados" hidden>No hay avistamientos que coincidan con el filtro seleccionado.</p>
+
+    <div class="paginacion">
+      <button type="button" id="pagina-anterior">&laquo; Anterior</button>
+      <span id="indicador-pagina"></span>
+      <button type="button" id="pagina-siguiente">Siguiente &raquo;</button>
+    </div>
+  </main>
+
+  <script src="js/datos-avistamiento.js"></script>
+  <script src="js/listado-avistamiento.js"></script>
+</body>
+</html>

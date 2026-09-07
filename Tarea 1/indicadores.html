@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Indicadores - Unión de Ornitólogos de Chile</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <header>
+    <h1>Unión de Ornitólogos de Chile</h1>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="main.html">Registro de Voluntario</a>
+      <a href="registro-avistamiento.html">Registrar Avistamiento</a>
+      <a href="listado-avistamiento.html">Listado de Avistamientos</a>
+      <a href="indicadores.html">Indicadores</a>
+    </nav>
+  </header>
+
+  <main class="main-container listado-container">
+    <h2>Indicadores y Métricas</h2>
+    <p class="nota-sesion">
+      Estos indicadores muestran datos de ejemplo para ilustrar el funcionamiento del sistema
+      (este prototipo no cuenta con una base de datos real).
+    </p>
+
+    <div class="contadores">
+      <div class="tarjeta-contador">
+        <span class="numero-contador" id="contador-voluntarios">0</span>
+        <span class="etiqueta-contador">Voluntarios registrados</span>
+      </div>
+      <div class="tarjeta-contador">
+        <span class="numero-contador" id="contador-avistamientos">0</span>
+        <span class="etiqueta-contador">Avistamientos registrados</span>
+      </div>
+    </div>
+
+    <h3>Avistamientos por tipo de ave</h3>
+    <div id="grafico-tipos" class="grafico-barras"></div>
+
+    <h3>Voluntarios por región</h3>
+    <div id="grafico-regiones" class="grafico-barras"></div>
+  </main>
+
+  <script src="js/indicadores.js"></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Avistamiento - Unión de Ornitólogos de Chile</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <header>
+    <h1>Unión de Ornitólogos de Chile</h1>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="main.html">Registro de Voluntario</a>
+      <a href="registro-avistamiento.html">Registrar Avistamiento</a>
+      <a href="listado-avistamiento.html">Listado de Avistamientos</a>
+      <a href="indicadores.html">Indicadores</a>
+    </nav>
+  </header>
+
+  <main class="main-container">
+    <h2>Registro de Avistamiento</h2>
+    <p>Los campos marcados con <span class="obligatorio">*</span> son obligatorios.</p>
+
+    <div id="val-box" hidden>
+      <div id="val-msg"></div>
+      <ul id="val-list"></ul>
+    </div>
+
+    <form name="avistamientoForm">
+      <fieldset>
+        <legend>Datos del Ave</legend>
+
+        <label for="select-tipo-ave">Tipo de ave<span class="obligatorio">*</span></label>
+        <select id="select-tipo-ave" name="select-tipo-ave">
+          <option value="">--Seleccione un tipo--</option>
+          <option value="Rapaz">Rapaz</option>
+          <option value="Acuática">Acuática</option>
+          <option value="Paseriforme">Paseriforme</option>
+          <option value="Zancuda">Zancuda</option>
+          <option value="Marina">Marina</option>
+          <option value="Nocturna">Nocturna</option>
+          <option value="Otra">Otra</option>
+        </select>
+
+        <div id="otro-tipo-ave-contenedor" hidden>
+          <label for="otro-tipo-ave">Especifique el tipo de ave<span class="obligatorio">*</span></label>
+          <input type="text" id="otro-tipo-ave" name="otro-tipo-ave" placeholder="Ej: Trepadora">
+        </div>
+
+        <label for="nombre-ave">Nombre del ave<span class="obligatorio">*</span></label>
+        <input type="text" id="nombre-ave" name="nombre-ave" placeholder="Ej: Cóndor andino">
+      </fieldset>
+
+      <fieldset>
+        <legend>Datos del Avistamiento</legend>
+
+        <label for="lugar">Lugar<span class="obligatorio">*</span></label>
+        <input type="text" id="lugar" name="lugar" placeholder="Ej: Humedal El Yali, cerca del mirador">
+
+        <label for="dia">Día del avistamiento<span class="obligatorio">*</span></label>
+        <input type="text" id="dia" name="dia" placeholder="DD" maxlength="2">
+
+        <label for="mes">Mes del avistamiento<span class="obligatorio">*</span></label>
+        <input type="text" id="mes" name="mes" placeholder="MM" maxlength="2">
+
+        <label for="año">Año del avistamiento<span class="obligatorio">*</span></label>
+        <input type="text" id="año" name="año" placeholder="2025 o 2026" maxlength="4">
+
+        <label for="hora">Hora del avistamiento (formato HH:MM)<span class="obligatorio">*</span></label>
+        <input type="text" id="hora" name="hora" placeholder="14:30" maxlength="5">
+
+        <label for="archivo">Foto o video del avistamiento<span class="obligatorio">*</span></label>
+        <input type="file" id="archivo" name="archivo" accept="image/*,video/*">
+      </fieldset>
+
+      <button type="button" id="submit-btn">Registrar Avistamiento</button>
+    </form>
+  </main>
+
+  <script src="js/validacion-avistamiento.js"></script>
+</body>
+</html>

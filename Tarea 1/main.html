@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Voluntario - Unión de Ornitólogos de Chile</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <header>
+    <h1>Unión de Ornitólogos de Chile</h1>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="main.html">Registro de Voluntario</a>
+      <a href="registro-avistamiento.html">Registrar Avistamiento</a>
+      <a href="listado-avistamiento.html">Listado de Avistamientos</a>
+      <a href="indicadores.html">Indicadores</a>
+    </nav>
+  </header>
+
+  <main class="main-container">
+    <h2>Registro de Voluntario</h2>
+    <p>Los campos marcados con <span class="obligatorio">*</span> son obligatorios.</p>
+
+    <div id="val-box" hidden>
+      <div id="val-msg"></div>
+      <ul id="val-list"></ul>
+    </div>
+
+    <form name="voluntarioForm">
+      <fieldset>
+        <legend>Datos Personales</legend>
+
+        <label for="nombre">Nombre Completo<span class="obligatorio">*</span></label>
+        <input type="text" id="nombre" name="nombre">
+
+        <label for="rut">RUT (sin puntos ni guion)<span class="obligatorio">*</span></label>
+        <input type="text" id="rut" name="rut" placeholder="123456789">
+
+        <label for="email">Correo Electrónico<span class="obligatorio">*</span></label>
+        <input type="text" id="email" name="email" placeholder="tu@email.com">
+
+        <label for="telefono">Teléfono<span class="obligatorio">*</span></label>
+        <span class="prefijo">+56</span>
+        <input type="text" id="telefono" name="telefono" placeholder="912345678">
+
+        <label for="telefono_alt">Teléfono Alternativo (opcional)</label>
+        <span class="prefijo">+56</span>
+        <input type="text" id="telefono_alt" name="telefono_alt" placeholder="912345678">
+      </fieldset>
+
+      <fieldset>
+        <legend>Ubicación</legend>
+
+        <label for="select-region">Región<span class="obligatorio">*</span></label>
+        <select id="select-region" name="select-region">
+          <option value="">--Seleccione una región--</option>
+        </select>
+
+        <label for="select-comuna">Comuna<span class="obligatorio">*</span></label>
+        <select id="select-comuna" name="select-comuna" disabled>
+          <option value="">--Seleccione una región primero--</option>
+        </select>
+
+        <label for="direccion">Dirección (opcional)</label>
+        <input type="text" id="direccion" name="direccion" placeholder="Calle y número">
+      </fieldset>
+
+      <button type="button" id="submit-btn">Registrarse</button>
+    </form>
+  </main>
+
+  <script src="js/regiones.js"></script>
+  <script src="js/validacion-voluntario.js"></script>
+</body>
+</html>
