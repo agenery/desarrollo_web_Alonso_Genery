@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Avistamiento de Aves{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css') }}">
+    {% block css %}{% endblock %}
+</head>
+<body>
+    <header>
+        <h1><a href="{{ url_for('index') }}" style="color: inherit; text-decoration: none;">Sistema de Avistamiento de Aves</a></h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('registrar_voluntario') }}">Registrar voluntario</a></li>
+                <li><a href="{{ url_for('registrar_avistamiento') }}">Informar Avistamiento</a></li>
+                <li><a href="{{ url_for('listado_avistamientos') }}">Listado de Avistamientos</a></li>
+                <li><a href="#">Estadísticas (indicadores y métricas)</a></li>
+            </ul>
+        </nav>
+    </header>
+    {% block content %}{% endblock %}
+    {% block javascript %}{% endblock %}
+</body>
+</html>

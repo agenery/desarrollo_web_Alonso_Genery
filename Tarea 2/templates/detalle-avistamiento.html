@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}Detalle del Avistamiento{% endblock %}
+{% block css %}
+<style>
+    a.boton { display: inline-block; padding: 10px; border-radius: 4px; cursor: pointer; text-decoration: none; background-color: #28a745; color: white; }
+</style>
+{% endblock %}
+{% block content %}
+<div class="main-container" style="max-width: 600px;">
+    <h2>Detalle del Avistamiento</h2>
+
+    <p><strong>Especie:</strong> {{ avistamiento.ave.nombre }}</p>
+    <p><strong>Lugar:</strong> {{ avistamiento.lugar }}</p>
+    <p><strong>Fecha y Hora:</strong> {{ avistamiento.fecha_hora.strftime('%d-%m-%Y %H:%M') }}</p>
+    <p><strong>Registrado por:</strong> {{ avistamiento.voluntario.nombre }} ({{ avistamiento.voluntario.email }})</p>
+    <p><strong>Descripción:</strong> {{ avistamiento.descripcion or 'Sin descripción proporcionada.' }}</p>
+
+    <hr>
+    <h3>Archivos Adjuntos</h3>
+    <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+        {% for registro in avistamiento.registros %}
+            {% set ruta_relativa = registro.ruta_archivo ~ '/' ~ registro.nombre_archivo %}
+            <div style="border: 1px solid #ccc; padding: 5px; border-radius: 4px;">
+                {% set ext = registro.nombre_archivo.split('.')[-1].lower() %}
+
+                {% if ext in ['jpg', 'jpeg', 'png', 'gif', 'webp'] %}
+                    <img src="{{ url_for('static', filename=ruta_relativa) }}" alt="Foto del avistamiento" width="250">
+                {% elif ext in ['mp4', 'webm', 'ogg', 'mov'] %}
+                    <video width="250" controls>
+                        <source src="{{ url_for('static', filename=ruta_relativa) }}" type="video/{{ ext }}">
+                        Tu navegador no soporta este video.
+                    </video>
+                {% else %}
+                    <a href="{{ url_for('static', filename=ruta_relativa) }}" target="_blank">Ver Archivo</a>
+                {% endif %}
+            </div>
+        {% else %}
+            <p>Este avistamiento no tiene archivos adjuntos.</p>
+        {% endfor %}
+    </div>
+
+    <br><br>
+    <div style="text-align: center;">
+        <a class="boton" href="{{ url_for('listado_avistamientos') }}">Volver al Listado</a>
+    </div>
+</div>
+{% endblock %}
