@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Portada{% endblock %}
+{% block content %}
+<main class="main-container">
+    <section>
+        <h2>Últimos Avistamientos</h2>
+
+        {% if avistamientos %}
+            <ul>
+                {% for avistamiento in avistamientos %}
+                    <li>
+                        <strong>Especie:</strong> {{ avistamiento.ave.nombre }} <br>
+                        <strong>Lugar:</strong> {{ avistamiento.lugar }} <br>
+                        <strong>Fecha y Hora:</strong> {{ avistamiento.fecha_hora.strftime('%d-%m-%Y %H:%M') }} <br>
+                        <strong>Registrado por:</strong> {{ avistamiento.voluntario.nombre }}
+                        <hr>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Aún no hay avistamientos registrados en la base de datos.</p>
+        {% endif %}
+    </section>
+</main>
+{% endblock %}

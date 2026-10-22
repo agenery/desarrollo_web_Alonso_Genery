@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block title %}Listado de Avistamientos{% endblock %}
+{% block css %}
+<style>
+    tr.fila-clickeable { cursor: pointer; transition: background-color 0.3s; }
+    tr.fila-clickeable:hover { background-color: #e9ecef; }
+    table.tabla-avistamientos { border-collapse: collapse; width: 100%; text-align: left; }
+    table.tabla-avistamientos th,
+    table.tabla-avistamientos td { border: 1px solid #ccc; padding: 10px; }
+    a.boton { display: inline-block; padding: 10px; border-radius: 4px; cursor: pointer; text-decoration: none; }
+    a.boton-primario { background-color: #28a745; color: white; }
+    a.boton-secundario { background-color: #6c757d; color: white; }
+</style>
+{% endblock %}
+{% block content %}
+<div class="main-container" style="max-width: 800px;">
+    <h2>Listado de Avistamientos</h2>
+    <table class="tabla-avistamientos">
+        <thead>
+            <tr>
+                <th>Fecha y Hora</th>
+                <th>Especie</th>
+                <th>Lugar</th>
+                <th>Voluntario</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for av in paginacion.items %}
+                <tr class="fila-clickeable" data-href="{{ url_for('detalle_avistamiento', id=av.id) }}">
+                    <td>{{ av.fecha_hora.strftime('%d-%m-%Y %H:%M') }}</td>
+                    <td>{{ av.ave.nombre }}</td>
+                    <td>{{ av.lugar }}</td>
+                    <td>{{ av.voluntario.nombre }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div style="margin-top: 20px; text-align: center;">
+        {% if paginacion.has_prev %}
+            <a class="boton boton-primario" href="{{ url_for('listado_avistamientos', page=paginacion.prev_num) }}">Anterior</a>
+        {% endif %}
+
+        <span style="margin: 0 15px;">Página {{ paginacion.page }} de {{ paginacion.pages }}</span>
+
+        {% if paginacion.has_next %}
+            <a class="boton boton-primario" href="{{ url_for('listado_avistamientos', page=paginacion.next_num) }}">Siguiente</a>
+        {% endif %}
+    </div>
+
+    <br>
+    <div style="text-align: center;">
+        <a class="boton boton-secundario" href="{{ url_for('index') }}">Volver a la Portada</a>
+    </div>
+</div>
+{% endblock %}
+{% block javascript %}
+<script>
+    const filas = document.querySelectorAll(".fila-clickeable");
+    for (const fila of filas) {
+        fila.addEventListener("click", () => {
+            window.location.href = fila.getAttribute("data-href");
+        });
+    }
+</script>
+{% endblock %}

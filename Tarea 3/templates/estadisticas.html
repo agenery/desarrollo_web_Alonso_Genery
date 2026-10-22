@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Estadísticas{% endblock %}
+{% block css %}
+<style>
+    a.boton { display: inline-block; padding: 10px; border-radius: 4px; cursor: pointer; text-decoration: none; background-color: #6c757d; color: white; }
+</style>
+{% endblock %}
+{% block content %}
+<div class="main-container" style="max-width: 900px;">
+    <h2>Estadísticas</h2>
+
+    <section>
+        <h3>Avistamientos registrados por día</h3>
+        <div id="grafico-dias" data-url="{{ url_for('api_avistamientos_por_dia') }}"></div>
+    </section>
+
+    <section>
+        <h3>Avistamientos por tipo de ave</h3>
+        <div id="grafico-tipos" data-url="{{ url_for('api_avistamientos_por_tipo') }}"></div>
+    </section>
+
+    <section>
+        <h3>Voluntarios registrados por comuna</h3>
+        <div id="grafico-comunas" data-url="{{ url_for('api_voluntarios_por_comuna') }}"></div>
+    </section>
+
+    <p style="text-align: center;">
+        <a class="boton" href="{{ url_for('index') }}">Volver a la Portada</a>
+    </p>
+</div>
+{% endblock %}
+{% block javascript %}
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="{{ url_for('static', filename='js/estadisticas.js') }}"></script>
+{% endblock %}

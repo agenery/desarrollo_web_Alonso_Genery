@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block title %}Registrar Voluntario{% endblock %}
+{% block content %}
+<div class="main-container">
+    <h2>Registrar Voluntario</h2>
+
+    {% if mensaje_exito %}
+        <div id="exito-box">
+            <h3>{{ mensaje_exito }}</h3>
+            <p>¿Qué quieres hacer ahora?</p>
+            <a href="{{ url_for('registrar_avistamiento') }}">
+                <button type="button">Registrar un Avistamiento</button>
+            </a>
+            <a href="{{ url_for('index') }}">
+                <button type="button">Volver a la Portada</button>
+            </a>
+        </div>
+    {% else %}
+        {% if error_msg %}
+            <p style="color: red;">{{ error_msg }}</p>
+        {% endif %}
+
+        <div id="val-box" hidden>
+            <p id="val-msg"></p>
+            <ul id="val-list"></ul>
+        </div>
+
+        <form name="myForm" action="{{ url_for('registrar_voluntario') }}" method="POST">
+            <label for="nombre">Nombre</label>
+            <input type="text" name="nombre" id="nombre" minlength="4" required><br>
+
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" minlength="15" required><br>
+
+            <label for="phone">Teléfono</label>
+            <input type="text" name="phone" id="phone" minlength="8" required><br>
+
+            <label for="select-region">Región</label>
+            <select name="select-region" id="select-region" required>
+                <option value="">Seleccione una región</option>
+                {% for region in regiones %}
+                    <option value="{{ region.id }}">{{ region.nombre }}</option>
+                {% endfor %}
+            </select><br>
+
+            <label for="select-comuna">Comuna</label>
+            <select name="select-comuna" id="select-comuna" required>
+                <option value="">Seleccione una comuna</option>
+                {% for comuna in comunas %}
+                    <option value="{{ comuna.id }}" data-region-id="{{ comuna.region_id }}">{{ comuna.nombre }}</option>
+                {% endfor %}
+            </select><br>
+
+            <button id="submit-btn" type="button">Validar y Registrar</button>
+        </form>
+    {% endif %}
+</div>
+{% endblock %}
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/select.js') }}"></script>
+<script src="{{ url_for('static', filename='js/validation.js') }}"></script>
+{% endblock %}
