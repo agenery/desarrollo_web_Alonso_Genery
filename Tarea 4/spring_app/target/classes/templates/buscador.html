@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador de Avistamientos</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+    <link rel="stylesheet" th:href="@{/css/buscador.css}">
+</head>
+<body>
+    <div th:replace="~{fragments/nav :: encabezado}"></div>
+
+    <main class="main-container">
+        <h2>Buscador de Avistamientos</h2>
+
+        <form id="form-buscador" role="search">
+            <label for="input-buscador">Buscar por nombre de ave, de voluntario o de comuna</label>
+            <input type="text" id="input-buscador" name="texto" autocomplete="off"
+                   placeholder="Ej: Chincol, Juan, Ñuñoa" maxlength="100">
+        </form>
+
+        <p id="mensaje-buscador">Comienza a escribir para ver los avistamientos.</p>
+
+        <div id="val-box" hidden>
+            <p id="val-msg"></p>
+            <ul id="val-list"></ul>
+        </div>
+
+        <div id="contenedor-resultados" class="tabla-scroll" hidden>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Voluntario</th>
+                        <th>Día</th>
+                        <th>Ave</th>
+                        <th>Comuna</th>
+                        <th>Nota</th>
+                        <th>Evaluar</th>
+                    </tr>
+                </thead>
+                <tbody id="resultados"></tbody>
+            </table>
+        </div>
+
+        <div class="acciones">
+            <a class="boton boton-secundario" href="http://localhost:5000/">Volver a la Portada</a>
+        </div>
+    </main>
+
+    <script th:src="@{/js/buscador.js}"></script>
+</body>
+</html>

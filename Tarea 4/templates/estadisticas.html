@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Estadísticas{% endblock %}
+{% block content %}
+<h2>Estadísticas</h2>
+
+<section>
+    <h3>Avistamientos registrados por día</h3>
+    <div id="grafico-dias" data-url="{{ url_for('api_avistamientos_por_dia') }}"></div>
+</section>
+
+<section>
+    <h3>Avistamientos por tipo de ave</h3>
+    <div id="grafico-tipos" data-url="{{ url_for('api_avistamientos_por_tipo') }}"></div>
+</section>
+
+<section>
+    <h3>Voluntarios registrados por comuna</h3>
+    <div id="grafico-comunas" data-url="{{ url_for('api_voluntarios_por_comuna') }}"></div>
+</section>
+
+<div class="acciones">
+    <a class="boton boton-secundario" href="{{ url_for('index') }}">Volver a la Portada</a>
+</div>
+{% endblock %}
+{% block javascript %}
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="{{ url_for('static', filename='js/estadisticas.js') }}"></script>
+{% endblock %}

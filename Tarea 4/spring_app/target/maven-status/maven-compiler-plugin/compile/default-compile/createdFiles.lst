@@ -1,0 +1,11 @@
+cc5002\tarea4\models\Comuna.class
+cc5002\tarea4\models\NotaRepository.class
+cc5002\tarea4\models\Voluntario.class
+cc5002\tarea4\models\Avistamiento.class
+cc5002\tarea4\models\Nota.class
+cc5002\tarea4\services\ApiService.class
+cc5002\tarea4\models\AvistamientoRepository.class
+cc5002\tarea4\controllers\AppController.class
+cc5002\tarea4\models\Ave.class
+cc5002\tarea4\controllers\ApiController.class
+cc5002\tarea4\Tarea4Application.class

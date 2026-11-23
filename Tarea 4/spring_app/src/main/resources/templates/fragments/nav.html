@@ -1,0 +1,13 @@
+<header th:fragment="encabezado">
+    <h1><a href="http://localhost:5000/">Sistema de Avistamiento de Aves</a></h1>
+    <nav>
+        <ul>
+            <li><a href="http://localhost:5000/">Portada</a></li>
+            <li><a href="http://localhost:5000/registrar-voluntario">Registrar voluntario</a></li>
+            <li><a href="http://localhost:5000/registrar-avistamiento">Informar Avistamiento</a></li>
+            <li><a href="http://localhost:5000/listado-avistamientos">Listado de Avistamientos</a></li>
+            <li><a href="http://localhost:5000/estadisticas">Estadísticas</a></li>
+            <li><a th:href="@{/buscador}">Buscador de avistamientos</a></li>
+        </ul>
+    </nav>
+</header>

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}Informar Avistamiento{% endblock %}
+{% block content %}
+<h2>Informar Avistamiento</h2>
+
+{% if mensaje_exito %}
+    <div id="exito-box">
+        <h3>{{ mensaje_exito }}</h3>
+        <a class="boton" href="{{ url_for('registrar_avistamiento') }}">Registrar otro Avistamiento</a>
+        <a class="boton boton-secundario" href="{{ url_for('index') }}">Volver a la Portada</a>
+    </div>
+{% else %}
+    {% if error_msg %}
+        <p class="mensaje-error">{{ error_msg }}</p>
+    {% endif %}
+
+    <div id="val-box" hidden>
+        <p id="val-msg"></p>
+        <ul id="val-list"></ul>
+    </div>
+
+    <form name="myForm" action="{{ url_for('registrar_avistamiento') }}" method="POST" enctype="multipart/form-data">
+        <label for="voluntario_id">Voluntario</label>
+        <select name="voluntario_id" id="voluntario_id" required>
+            <option value="">Seleccione un voluntario</option>
+            {% for vol in voluntarios %}
+                <option value="{{ vol.id }}">{{ vol.nombre }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="ave_id">Especie de Ave</label>
+        <select name="ave_id" id="ave_id" required>
+            <option value="">Seleccione un ave</option>
+            {% for ave in aves %}
+                <option value="{{ ave.id }}">{{ ave.nombre }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="lugar">Lugar</label>
+        <input type="text" name="lugar" id="lugar" required>
+
+        <label for="fecha_hora">Fecha y Hora</label>
+        <input type="datetime-local" name="fecha_hora" id="fecha_hora" required>
+
+        <label for="archivos">Fotos/Videos (Max 3)</label>
+        <input type="file" name="archivos" id="archivos" multiple accept="image/*,video/*" required>
+
+        <label for="descripcion">Descripción (opcional)</label>
+        <textarea name="descripcion" id="descripcion" rows="4" maxlength="500"></textarea>
+
+        <button id="submit-btn" type="button">Validar y Registrar</button>
+    </form>
+{% endif %}
+{% endblock %}
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/validacion-avistamiento.js') }}"></script>
+{% endblock %}

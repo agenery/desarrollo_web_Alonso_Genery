@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}Registrar Voluntario{% endblock %}
+{% block content %}
+<h2>Registrar Voluntario</h2>
+
+{% if mensaje_exito %}
+    <div id="exito-box">
+        <h3>{{ mensaje_exito }}</h3>
+        <p>¿Qué quieres hacer ahora?</p>
+        <a class="boton" href="{{ url_for('registrar_avistamiento') }}">Registrar un Avistamiento</a>
+        <a class="boton boton-secundario" href="{{ url_for('index') }}">Volver a la Portada</a>
+    </div>
+{% else %}
+    {% if error_msg %}
+        <p class="mensaje-error">{{ error_msg }}</p>
+    {% endif %}
+
+    <div id="val-box" hidden>
+        <p id="val-msg"></p>
+        <ul id="val-list"></ul>
+    </div>
+
+    <form name="myForm" action="{{ url_for('registrar_voluntario') }}" method="POST">
+        <label for="nombre">Nombre</label>
+        <input type="text" name="nombre" id="nombre" minlength="4" required>
+
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" minlength="15" required>
+
+        <label for="phone">Teléfono</label>
+        <input type="text" name="phone" id="phone" minlength="8" required>
+
+        <label for="select-region">Región</label>
+        <select name="select-region" id="select-region" required>
+            <option value="">Seleccione una región</option>
+            {% for region in regiones %}
+                <option value="{{ region.id }}">{{ region.nombre }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="select-comuna">Comuna</label>
+        <select name="select-comuna" id="select-comuna" required>
+            <option value="">Seleccione una comuna</option>
+            {% for comuna in comunas %}
+                <option value="{{ comuna.id }}" data-region-id="{{ comuna.region_id }}">{{ comuna.nombre }}</option>
+            {% endfor %}
+        </select>
+
+        <button id="submit-btn" type="button">Validar y Registrar</button>
+    </form>
+{% endif %}
+{% endblock %}
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/select.js') }}"></script>
+<script src="{{ url_for('static', filename='js/validation.js') }}"></script>
+{% endblock %}
