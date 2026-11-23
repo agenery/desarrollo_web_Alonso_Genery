@@ -7,7 +7,7 @@
 - La busqueda se hace con fetch en el evento de input. No distingue mayúsculas/minúsculas y busca el texto como substring del nombre del ave, del voluntario o de la comuna.
 - Si llega una respuesta de una búsqueda anterior (el usuario siguió escribiendo), se descarta.
 - El texto tiene un máximo de 100 caracteres.
-- Las coincidencias se envuelven en <mark>. Se construyen con nodos de texto.
+- Las coincidencias se envuelven en `<mark>`. Se construyen con nodos de texto.
 - Al presionar Evaluar, aparece un select con las notas del 1 al 7 y los botones para guardar y cancelar. La nota se envía con fetch y el servidor responde con el promedio recalculado desde la base de datos, que se actualiza en fila sin recargar la página.
 - El promedio se muestra con un decimal junto a la cantidad de notas.
 - buscador.js revisa que el número sea un entero entre 1 y 7.
